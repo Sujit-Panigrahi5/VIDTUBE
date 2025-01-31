@@ -70,8 +70,8 @@ const userSchema = new Schema(
 
 // beford save the password it will encripted here (middleware  )
 userSchema.pre("save", async function (next) {
-
-    if (!this.modified("password")) return true;
+    // fixed in registration video
+    if (!this.isModified("password")) return true;
 
     this.password = bcrypt.hash(this.password, 10);
 
